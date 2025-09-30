@@ -22,6 +22,11 @@ describe("VacancyCard component, variant - Remote", function () {
       to: 4700,
       currency: "RUR",
     },
+    snippet: {
+      requirement: null,
+      responsibility: null,
+    },
+    url: null,
   };
 
   it("should render component VacancyCard", () => {
@@ -53,6 +58,11 @@ describe("VacancyCard component, variant - field_work", function () {
       to: 4000,
       currency: "RUR",
     },
+    snippet: {
+      requirement: null,
+      responsibility: null,
+    },
+    url: null,
   };
 
   it("should render component VacancyCard", () => {
@@ -83,6 +93,11 @@ describe("VacancyCard component, variant - without experience", function () {
       to: 4000,
       currency: "RUR",
     },
+    snippet: {
+      requirement: null,
+      responsibility: null,
+    },
+    url: null,
   };
 
   it("should render component VacancyCard", () => {
