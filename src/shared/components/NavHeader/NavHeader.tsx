@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from "./NavHeader.module.css";
 
 export const NavHeader = () => {
@@ -5,12 +7,12 @@ export const NavHeader = () => {
     <nav className={styles["nav-menu"]}>
       <ul className={styles["nav-menu__list"]}>
         <li className={styles["nav-menu__item"]}>
-          <a
-            href="#"
+          <Link
+            to="/maybe-hh-look-like-with-router/"
             className={`${styles["nav-menu__link"]} ${styles["nav-menu__link--active"]}`}
           >
             Вакансии FE
-          </a>
+          </Link>
         </li>
         <li className={styles["nav-menu__item"]}>
           <a

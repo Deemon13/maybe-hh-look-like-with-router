@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Badge } from "@mantine/core";
 
 import { useTypedSelector } from "../../../app/redux/hooks/redux";
@@ -153,12 +154,18 @@ export const VacancyCard = ({ item }: VacancyCardProps) => {
       {item.area && getArea(item.area.name, currentArea)}
 
       <div className={styles["vacancy-card__actions"]}>
-        <button
+        {/* кнопка "Смотреть вакансию" меняет текст на "Откликнуться на hh.ru"
+        в кнопке и добавляет хендлер в зависимости от наличия в сторе id
+        выбранной вакансии */}
+        <Link
+          to="/vacancies/{id}"
           type="button"
           className={styles["vacancy-card__action--showme"]}
         >
           Смотреть вакансию
-        </button>
+        </Link>
+        {/* кнопка "Откликнуться" рендерится в зависимости от
+        наличия в сторе id выбранной вакансии */}
         <button
           type="button"
           className={styles["vacancy-card__action--respond"]}

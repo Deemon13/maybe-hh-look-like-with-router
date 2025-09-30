@@ -1,6 +1,7 @@
+import { Routes, Route } from "react-router-dom";
 import { AppShell } from "@mantine/core";
 
-import { Vacancies, VacancyPage } from "../../pages";
+import { Vacancies, VacancyPage, NotFound } from "../../pages";
 
 import { Header } from "../../widgets";
 
@@ -12,8 +13,16 @@ export const App = () => {
       <Header />
 
       <AppShell.Main className={styles.main}>
-        <Vacancies />
-        <VacancyPage />
+        <Routes>
+          <Route
+            path="/maybe-hh-look-like-with-router/"
+            element={<Vacancies />}
+          />
+          <Route path="/vacancies/:id" element={<VacancyPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        {/* <Vacancies /> */}
+        {/* <VacancyPage /> */}
       </AppShell.Main>
     </AppShell>
   );

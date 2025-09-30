@@ -1,4 +1,17 @@
 .vacancy-page__container {
   text-align: center;
   margin: 0 auto;
+  width: 600px;
+
+  border: 1px solid black;
+}
+
+.vacancy-page__vacancy-card {
+  margin-bottom: 20px;
+
+  background-color: white;
+}
+
+.vacancy-page__vacancy-snippet {
+  background-color: white;
 }
