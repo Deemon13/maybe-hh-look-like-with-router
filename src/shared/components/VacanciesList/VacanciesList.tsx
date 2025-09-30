@@ -1,6 +1,6 @@
-import type { VacanciesType } from "../../app/redux/reducers/vacanciesSlice";
+import type { VacanciesType } from "../../../app/redux/reducers/vacanciesSlice";
 
-import { VacancyCard } from "../../shared";
+import { VacancyCard } from "../../../shared";
 
 import styles from "./VacanciesList.module.css";
 interface ItemsProps {

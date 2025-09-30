@@ -63,8 +63,6 @@ export const vacanciesSlice = createSlice({
       }
     },
     removeSkill: (state, action) => {
-      console.log(action.payload);
-
       state.skill_set = state.skill_set.filter(
         (skill) => skill !== action.payload
       );

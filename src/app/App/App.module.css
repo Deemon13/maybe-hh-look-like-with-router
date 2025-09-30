@@ -3,20 +3,3 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-
-.vacancies {
-  padding: 24px 0;
-  max-width: 1000px;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  gap: 24px;
-}
-
-.search-params {
-  width: 320px;
-}
-
-.vacancies-field {
-  width: 650px;
-}
