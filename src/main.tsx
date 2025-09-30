@@ -6,6 +6,7 @@ import {
   MantineProvider,
   type MantineColorsTuple,
 } from "@mantine/core";
+import { BrowserRouter } from "react-router-dom";
 
 import { setupStore } from "./shared/store/store";
 
@@ -34,10 +35,12 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={setupStore}>
-      <MantineProvider theme={theme}>
-        <App />
-      </MantineProvider>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={setupStore}>
+        <MantineProvider theme={theme}>
+          <App />
+        </MantineProvider>
+      </Provider>
+    </BrowserRouter>
   </StrictMode>
 );
