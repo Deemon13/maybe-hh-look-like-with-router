@@ -1,6 +1,6 @@
 import { AppShell } from "@mantine/core";
 
-import { Vacancies } from "../../pages";
+import { Vacancies, VacancyPage } from "../../pages";
 
 import { Header } from "../../widgets";
 
@@ -13,6 +13,7 @@ export const App = () => {
 
       <AppShell.Main className={styles.main}>
         <Vacancies />
+        <VacancyPage />
       </AppShell.Main>
     </AppShell>
   );

@@ -11,7 +11,11 @@ interface VacancyCardProps {
 }
 
 const getSalary = (
-  data: { from: number; to: number; currency: string } | null
+  data: {
+    from: number | null;
+    to: number | null;
+    currency: string | null;
+  } | null
 ) => {
   if (!data) {
     return null;
@@ -32,7 +36,7 @@ const getSalary = (
   );
 };
 
-const getExperience = (data: { id: string } | null) => {
+const getExperience = (data: { id: string | null } | null) => {
   if (!data) {
     return null;
   }
@@ -60,7 +64,7 @@ const getExperience = (data: { id: string } | null) => {
   return <p className={styles["vacancy-card__experience"]}>{experience}</p>;
 };
 
-const getWorkFormat = (data: [{ id: string }] | [] | null) => {
+const getWorkFormat = (data: [{ id: string | null }] | [] | null) => {
   if (data?.length === 0 || !data) {
     return null;
   }
@@ -136,7 +140,7 @@ export const VacancyCard = ({ item }: VacancyCardProps) => {
         </div>
       )}
 
-      {item.employer.name && (
+      {item.employer?.name && (
         <p className={styles["vacancy-card__employer"]}>{item.employer.name}</p>
       )}
 
@@ -146,7 +150,7 @@ export const VacancyCard = ({ item }: VacancyCardProps) => {
         </div>
       )}
 
-      {getArea(item.area.name, currentArea)}
+      {item.area && getArea(item.area.name, currentArea)}
 
       <div className={styles["vacancy-card__actions"]}>
         <button

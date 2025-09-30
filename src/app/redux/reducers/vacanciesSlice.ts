@@ -6,21 +6,23 @@ export interface VacanciesType {
   id: string;
   name: string;
   area: {
-    id: string;
-    name: string;
-  };
+    id: string | null;
+    name: string | null;
+  } | null;
   salary: {
-    from: number;
-    to: number;
-    currency: string;
-  };
+    from: number | null;
+    to: number | null;
+    currency: string | null;
+  } | null;
   experience: {
-    id: string;
-  };
+    id: string | null;
+  } | null;
   employer: {
-    name: string;
-  };
-  work_format: [{ id: string }];
+    name: string | null;
+  } | null;
+  work_format: [{ id: string | null }] | null;
+  snippet: { requirement: string | null; responsibility: string | null } | null;
+  url: string | null;
 }
 
 export interface VacanciesState {
