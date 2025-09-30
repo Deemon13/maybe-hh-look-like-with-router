@@ -1,0 +1,6 @@
+.loader-container {
+  width: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,94 @@
+.vacancy-card__item {
+  margin-bottom: 16px;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.vacancy-card__title {
+  margin-top: 0;
+  margin-bottom: 8px;
+
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-weight: 500;
+  text-align: left;
+
+  color: #364fc7;
+}
+
+.vacancy-card__salary-currency-experience {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+.vacancy-card__salary-container {
+  margin-right: 16px;
+
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 400;
+
+  color: #0f0f10;
+}
+
+.vacancy-card__experience {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0;
+  font-weight: 400;
+
+  color: rgba(15, 15, 16, 0.5);
+}
+
+.vacancy-card__employer {
+  margin-top: 0;
+  margin-bottom: 8px;
+
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0;
+  font-weight: 400;
+
+  color: rgba(15, 15, 16, 0.5);
+}
+
+.vacancy-card__work-format {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.vacancy-card__area {
+  margin-top: 4px;
+
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 400;
+
+  color: #0f0f10;
+}
+
+.vacancy-card__actions {
+  margin-top: 16px;
+  text-align: left;
+}
+
+.vacancy-card__action--showme {
+  margin-right: 12px;
+}
+
+.vacancy-card__action--respond {
+  background-color: rgba(15, 15, 16, 0.1);
+  color: #0f0f10;
+}
