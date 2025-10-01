@@ -1,29 +1,22 @@
-import { Routes, Route } from "react-router-dom";
-import { AppShell } from "@mantine/core";
+import { Navigate, Routes, Route } from "react-router-dom";
 
 import { Vacancies, VacancyPage, NotFound } from "../../pages";
 
-import { Header } from "../../widgets";
+import { Layout } from "../../shared";
 
-import styles from "./App.module.css";
+// import styles from "./App.module.css";
 
 export const App = () => {
   return (
-    <AppShell padding="md" header={{ height: 60 }}>
-      <Header />
-
-      <AppShell.Main className={styles.main}>
-        <Routes>
-          <Route
-            path="/maybe-hh-look-like-with-router/"
-            element={<Vacancies />}
-          />
-          <Route path="/vacancies/:id" element={<VacancyPage />} />
+    <>
+      <Routes>
+        <Route path="/maybe-hh-look-like-with-router/" element={<Layout />}>
+          <Route index element={<Navigate to="vacancies" replace />} />
+          <Route path="vacancies" element={<Vacancies />} />
+          <Route path="vacancies/:id" element={<VacancyPage />} />
           <Route path="*" element={<NotFound />} />
-        </Routes>
-        {/* <Vacancies /> */}
-        {/* <VacancyPage /> */}
-      </AppShell.Main>
-    </AppShell>
+        </Route>
+      </Routes>
+    </>
   );
 };

@@ -158,7 +158,7 @@ export const VacancyCard = ({ item }: VacancyCardProps) => {
         в кнопке и добавляет хендлер в зависимости от наличия в сторе id
         выбранной вакансии */}
         <Link
-          to="/vacancies/{id}"
+          to={item.id}
           type="button"
           className={styles["vacancy-card__action--showme"]}
         >
