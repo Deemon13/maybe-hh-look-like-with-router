@@ -14,6 +14,7 @@ describe("VacancyCard component, variant - Remote", function () {
     area: { id: "1", name: "Москва" },
     employer: {
       name: "Ozon",
+      logo_urls: null,
     },
     experience: { id: "between3And6" },
     work_format: [{ id: " REMOTE" }],
@@ -32,7 +33,7 @@ describe("VacancyCard component, variant - Remote", function () {
   it("should render component VacancyCard", () => {
     render(
       <Provider store={setupStore}>
-        <VacancyCard item={mockItem} />
+        <VacancyCard item={mockItem} isSingle={false} />
       </Provider>
     );
     expect(screen.getByText(/Senior frontend developer/i));
@@ -50,6 +51,7 @@ describe("VacancyCard component, variant - field_work", function () {
     area: { id: "2", name: "Санкт-Петербург" },
     employer: {
       name: "Ozon",
+      logo_urls: null,
     },
     experience: { id: "moreThan6" },
     work_format: [{ id: "FIELD_WORK" }],
@@ -68,7 +70,7 @@ describe("VacancyCard component, variant - field_work", function () {
   it("should render component VacancyCard", () => {
     render(
       <Provider store={setupStore}>
-        <VacancyCard item={mockItem} />
+        <VacancyCard item={mockItem} isSingle={false} />
       </Provider>
     );
     expect(screen.getByText(/Middle frontend developer/i));
@@ -85,6 +87,7 @@ describe("VacancyCard component, variant - without experience", function () {
     area: { id: "3", name: "Астана" },
     employer: {
       name: "Ozon",
+      logo_urls: null,
     },
     experience: { id: "noExperience" },
     work_format: [{ id: "FIELD_WORK" }],
@@ -103,7 +106,7 @@ describe("VacancyCard component, variant - without experience", function () {
   it("should render component VacancyCard", () => {
     render(
       <Provider store={setupStore}>
-        <VacancyCard item={mockItem} />
+        <VacancyCard item={mockItem} isSingle={false} />
       </Provider>
     );
 

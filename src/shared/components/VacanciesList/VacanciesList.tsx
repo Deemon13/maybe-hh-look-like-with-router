@@ -11,7 +11,7 @@ export const VacanciesList = ({ items }: ItemsProps) => {
   return (
     <ul className={styles["vacancies-list"]}>
       {items.map((item) => {
-        return <VacancyCard key={item.id} item={item} />;
+        return <VacancyCard key={item.id} item={item} isSingle={false} />;
       })}
     </ul>
   );
