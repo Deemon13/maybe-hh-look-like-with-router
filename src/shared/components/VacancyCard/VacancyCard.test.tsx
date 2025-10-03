@@ -27,7 +27,7 @@ describe("VacancyCard component, variant - Remote", function () {
       requirement: null,
       responsibility: null,
     },
-    url: null,
+    alternate_url: "",
   };
 
   it("should render component VacancyCard", () => {
@@ -64,7 +64,7 @@ describe("VacancyCard component, variant - field_work", function () {
       requirement: null,
       responsibility: null,
     },
-    url: null,
+    alternate_url: "",
   };
 
   it("should render component VacancyCard", () => {
@@ -100,7 +100,7 @@ describe("VacancyCard component, variant - without experience", function () {
       requirement: null,
       responsibility: null,
     },
-    url: null,
+    alternate_url: "",
   };
 
   it("should render component VacancyCard", () => {
