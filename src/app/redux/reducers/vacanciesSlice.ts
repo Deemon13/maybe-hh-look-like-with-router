@@ -25,7 +25,7 @@ export interface VacanciesType {
   } | null;
   work_format: [{ id: string | null }] | null;
   snippet: { requirement: string | null; responsibility: string | null } | null;
-  url: string | null;
+  alternate_url: string;
 }
 
 export interface VacanciesState {

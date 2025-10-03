@@ -165,17 +165,24 @@ export const VacancyCard = ({ item, isSingle = false }: VacancyCardProps) => {
           </Link>
         )}
 
-        <button
-          type="button"
-          className={
-            isSingle
-              ? styles["vacancy-card__action--showme"]
-              : styles["vacancy-card__action--respond"]
-          }
-          onClick={() => openVacancyInNewTab(item.id)}
-        >
-          {isSingle ? "Откликнуться на hh.ru" : "Откликнуться"}
-        </button>
+        {isSingle ? (
+          <a
+            href={item.alternate_url}
+            className={styles["vacancy-card__action--showme"]}
+            target="_blanc"
+            rel="noopener noreferrer"
+          >
+            Откликнуться на hh.ru
+          </a>
+        ) : (
+          <button
+            type="button"
+            className={styles["vacancy-card__action--respond"]}
+            onClick={() => openVacancyInNewTab(item.id)}
+          >
+            Откликнуться
+          </button>
+        )}
       </div>
     </li>
   );
