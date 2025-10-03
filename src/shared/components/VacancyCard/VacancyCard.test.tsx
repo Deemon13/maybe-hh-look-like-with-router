@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import { expect, it, describe } from "vitest";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { setupStore } from "../../store/store";
 import { render } from "../../../app/test-utils/render";
 import type { VacanciesType } from "../../../app/redux/reducers/vacanciesSlice";
@@ -32,9 +33,11 @@ describe("VacancyCard component, variant - Remote", function () {
 
   it("should render component VacancyCard", () => {
     render(
-      <Provider store={setupStore}>
-        <VacancyCard item={mockItem} isSingle={false} />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={setupStore}>
+          <VacancyCard item={mockItem} isSingle={false} />
+        </Provider>
+      </MemoryRouter>
     );
     expect(screen.getByText(/Senior frontend developer/i));
     expect(screen.getByText(/Ozon/i));
@@ -69,9 +72,11 @@ describe("VacancyCard component, variant - field_work", function () {
 
   it("should render component VacancyCard", () => {
     render(
-      <Provider store={setupStore}>
-        <VacancyCard item={mockItem} isSingle={false} />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={setupStore}>
+          <VacancyCard item={mockItem} isSingle={false} />
+        </Provider>
+      </MemoryRouter>
     );
     expect(screen.getByText(/Middle frontend developer/i));
     expect(screen.getByText(/Опыт более 6 лет/i));
@@ -105,9 +110,11 @@ describe("VacancyCard component, variant - without experience", function () {
 
   it("should render component VacancyCard", () => {
     render(
-      <Provider store={setupStore}>
-        <VacancyCard item={mockItem} isSingle={false} />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={setupStore}>
+          <VacancyCard item={mockItem} isSingle={false} />
+        </Provider>
+      </MemoryRouter>
     );
 
     expect(screen.getByText(/Без опыта/i));
