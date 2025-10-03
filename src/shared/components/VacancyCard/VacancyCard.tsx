@@ -167,7 +167,11 @@ export const VacancyCard = ({ item, isSingle = false }: VacancyCardProps) => {
 
         <button
           type="button"
-          className={styles["vacancy-card__action--respond"]}
+          className={
+            isSingle
+              ? styles["vacancy-card__action--showme"]
+              : styles["vacancy-card__action--respond"]
+          }
           onClick={() => openVacancyInNewTab(item.id)}
         >
           {isSingle ? "Откликнуться на hh.ru" : "Откликнуться"}

@@ -60,18 +60,34 @@ export const VacancyPage = () => {
     <div className={styles["vacancy-page__container"]}>
       {vacancy ? <VacancyCard item={vacancy} isSingle={true} /> : errorVacancy}
       <div className={styles["vacancy-page__vacancy-snippet"]}>
-        <div>
+        <div className={styles["vacancy-page__logo-container"]}>
           <img
             src={logoUrl ? logoUrl : NoLogo}
             alt="company-logo"
+            className={styles["vacancy-page__logo-img"]}
             width={90}
             height={90}
           />
         </div>
-        <div>Компания: {vacancy ? vacancy?.employer?.name : errorVacancy} </div>
-        <div>Требования: {vacancy ? markupReq : errorVacancy}</div>
-        <div>
-          Чем предстоит заниматься: {vacancy ? markupResp : errorVacancy}
+        <div className={styles["vacancy-page__snippet-container"]}>
+          <span
+            className={`${styles["vacancy-page__snippet-title"]} ${styles["vacancy-page__snippet-title--company"]}`}
+          >
+            Компания:
+          </span>{" "}
+          {vacancy ? vacancy?.employer?.name : errorVacancy}{" "}
+        </div>
+        <div className={styles["vacancy-page__snippet-container"]}>
+          <span className={styles["vacancy-page__snippet-title"]}>
+            Требования:
+          </span>{" "}
+          {vacancy ? markupReq : errorVacancy}
+        </div>
+        <div className={styles["vacancy-page__snippet-container"]}>
+          <span className={styles["vacancy-page__snippet-title"]}>
+            Чем предстоит заниматься:
+          </span>{" "}
+          {vacancy ? markupResp : errorVacancy}
         </div>
       </div>
     </div>
