@@ -19,6 +19,9 @@ export interface VacanciesType {
   } | null;
   employer: {
     name: string | null;
+    logo_urls: {
+      original: string | null;
+    } | null;
   } | null;
   work_format: [{ id: string | null }] | null;
   snippet: { requirement: string | null; responsibility: string | null } | null;

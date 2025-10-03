@@ -1,9 +1,7 @@
 .vacancy-page__container {
-  text-align: center;
   margin: 0 auto;
-  width: 600px;
-
-  border: 1px solid black;
+  width: 650px;
+  list-style: none;
 }
 
 .vacancy-page__vacancy-card {
@@ -13,5 +11,10 @@
 }
 
 .vacancy-page__vacancy-snippet {
+  padding: 24px;
+  border-radius: 12px;
+
+  text-align: left;
+
   background-color: white;
 }

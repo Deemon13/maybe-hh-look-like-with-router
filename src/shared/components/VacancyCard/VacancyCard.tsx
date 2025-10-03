@@ -9,6 +9,7 @@ import styles from "./VacancyCard.module.css";
 
 interface VacancyCardProps {
   item: VacanciesType;
+  isSingle: boolean;
 }
 
 const getSalary = (
@@ -123,7 +124,7 @@ const openVacancyInNewTab = (id: string) => {
   window.open(`https://hh.ru/vacancy/${id}`, "_blanc", "noopener, noreferrer");
 };
 
-export const VacancyCard = ({ item }: VacancyCardProps) => {
+export const VacancyCard = ({ item, isSingle = false }: VacancyCardProps) => {
   const currentArea = useTypedSelector(
     (state) => state.vacanciesReducer.currentArea
   );
@@ -154,24 +155,22 @@ export const VacancyCard = ({ item }: VacancyCardProps) => {
       {item.area && getArea(item.area.name, currentArea)}
 
       <div className={styles["vacancy-card__actions"]}>
-        {/* кнопка "Смотреть вакансию" меняет текст на "Откликнуться на hh.ru"
-        в кнопке и добавляет хендлер в зависимости от наличия в сторе id
-        выбранной вакансии */}
-        <Link
-          to={item.id}
-          type="button"
-          className={styles["vacancy-card__action--showme"]}
-        >
-          Смотреть вакансию
-        </Link>
-        {/* кнопка "Откликнуться" рендерится в зависимости от
-        наличия в сторе id выбранной вакансии */}
+        {!isSingle && (
+          <Link
+            to={item.id}
+            type="button"
+            className={styles["vacancy-card__action--showme"]}
+          >
+            Смотреть вакансию
+          </Link>
+        )}
+
         <button
           type="button"
           className={styles["vacancy-card__action--respond"]}
           onClick={() => openVacancyInNewTab(item.id)}
         >
-          Откликнуться
+          {isSingle ? "Откликнуться на hh.ru" : "Откликнуться"}
         </button>
       </div>
     </li>
