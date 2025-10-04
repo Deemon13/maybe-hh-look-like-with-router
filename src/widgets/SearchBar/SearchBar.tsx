@@ -55,7 +55,6 @@ export const SearchBar = () => {
           <Button
             className={styles["searchbar__btn"]}
             onClick={handleClickOnSearch}
-            disabled={searchInput ? false : true}
           >
             Найти
           </Button>
