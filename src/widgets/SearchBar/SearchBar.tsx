@@ -3,10 +3,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { Title, Button, Group, TextInput } from "@mantine/core";
 
-import {
-  useTypedDispatch,
-  // useTypedSelector,
-} from "../../app/redux/hooks/redux";
+import { useTypedDispatch } from "../../app/redux/hooks/redux";
 
 import {
   setCurrentPage,
@@ -21,10 +18,6 @@ export const SearchBar = () => {
   const [searchParams] = useSearchParams();
 
   const dispatch = useTypedDispatch();
-
-  // const searchText = useTypedSelector(
-  //   (state) => state.vacanciesReducer.searchText
-  // );
 
   const searchKeywordParam = searchParams.get("keywords") || "";
 

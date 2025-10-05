@@ -22,7 +22,6 @@ export const fetchVacancies = createAsyncThunk<
 >(
   "vacancies/fetchVacancies",
   async function ({ page = 0, text = "", area = null }: getVacanciesProps) {
-    // try {
     const response = await ky.get(url, {
       searchParams: {
         industry: 7,
@@ -41,8 +40,5 @@ export const fetchVacancies = createAsyncThunk<
     const data = await response.json<fetchVacanciesStateResponce>();
 
     return data;
-    // } catch (error) {
-    //   console.error(error);
-    // }
   }
 );

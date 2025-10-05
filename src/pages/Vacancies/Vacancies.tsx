@@ -21,8 +21,6 @@ import { SearchBar, SkillBox, AreaSelect, PaginationUI } from "../../widgets";
 import styles from "./Vacancies.module.css";
 
 export const Vacancies = () => {
-  // console.log("1.1");
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useTypedDispatch();
@@ -44,12 +42,6 @@ export const Vacancies = () => {
   );
   const skills = useTypedSelector((state) => state.vacanciesReducer.skill_set);
 
-  // const cachedSkills = useMemo(() =>{
-  //   searchParams.get("skills")?.split(" AND ")
-  // },[searchParams])
-
-  // console.log(skillsParam);
-
   const params: {
     skills?: string;
     city?: string;
@@ -59,9 +51,6 @@ export const Vacancies = () => {
   const cityParam = searchParams.get("city") || "Все города";
   const skillsParam = searchParams.get("skills")?.split(" AND ") || [];
   const searchKeywordParam = searchParams.get("keywords") || "";
-
-  // console.log(skillsParam);
-  // console.log(params.skills);
 
   function getArea(cityUrl: string | null) {
     switch (cityUrl) {
@@ -80,7 +69,6 @@ export const Vacancies = () => {
     delete params.skills;
   }
 
-  // if (currentArea) {
   switch (currentArea) {
     case "1":
       params.city = "Москва";
@@ -89,30 +77,22 @@ export const Vacancies = () => {
       params.city = "Санкт-Петербург";
       break;
     default:
-      // params.city = "Все города";
       break;
   }
-  // }
 
   if (searchText) {
     params.keywords = searchText;
   }
 
-  // console.log("1.2");
-
   useEffect(() => {
-    // console.log("2");
     dispatch(selectArea(cityParam));
     skillsParam.forEach((skill) => dispatch(addSkill(skill)));
     dispatch(inputSearchText(searchKeywordParam));
 
-    // skills=TypeScript+AND+React+AND+Redux
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cityParam, searchKeywordParam, dispatch]);
 
   useEffect(() => {
-    // console.log("3");
-
     const searchSkills = skills.join(" AND ");
     const searchQuery = searchText
       ? `${searchText} AND ${searchSkills}`
