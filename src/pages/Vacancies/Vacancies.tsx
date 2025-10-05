@@ -8,20 +8,15 @@ import {
 
 import { fetchVacancies } from "../../app/redux/reducers/VacanciesThunk";
 
+import { selectArea } from "../../app/redux/reducers/vacanciesSlice";
+
 import { VacanciesList, LoaderUI, NoResults } from "../../shared";
 
 import { SearchBar, SkillBox, AreaSelect, PaginationUI } from "../../widgets";
 
 import styles from "./Vacancies.module.css";
 
-// interface ParamsType extends URLSearchParamsInit {
-//   skills?: string;
-//   city?: string;
-//   keywords?: string;
-// }
-
 export const Vacancies = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useTypedDispatch();
@@ -37,17 +32,28 @@ export const Vacancies = () => {
   const currentArea = useTypedSelector(
     (state) => state.vacanciesReducer.currentArea
   );
+
   const searchText = useTypedSelector(
     (state) => state.vacanciesReducer.searchText
   );
   const skills = useTypedSelector((state) => state.vacanciesReducer.skill_set);
 
-  // const params = { skills: "", city: "", keywords: "" };
   const params: {
     skills?: string;
     city?: string;
     keywords?: string;
   } = {};
+
+  function getArea(cityUrl: string | null) {
+    switch (cityUrl) {
+      case "Москва":
+        return "1";
+      case "Санкт-Петербург":
+        return "2";
+      default:
+        return null;
+    }
+  }
 
   if (skills.length > 0) {
     params.skills = skills.join(" AND ");
@@ -64,7 +70,7 @@ export const Vacancies = () => {
         params.city = "Санкт-Петербург";
         break;
       default:
-        params.city = "";
+        params.city = "Все города";
         break;
     }
   }
@@ -74,18 +80,23 @@ export const Vacancies = () => {
   }
 
   useEffect(() => {
+    const city = searchParams.get("city");
+    dispatch(selectArea(city));
+
+    // skills=TypeScript+AND+React+AND+Redux
+  }, [dispatch, searchParams]);
+
+  useEffect(() => {
+    setSearchParams(params);
     const searchSkills = skills.join(" AND ");
-    const searchParams = searchText
+    const searchQuery = searchText
       ? `${searchText} AND ${searchSkills}`
       : `${searchSkills}`;
-
-    setSearchParams(params);
-
     dispatch(
       fetchVacancies({
         page: currentPage,
-        text: searchParams,
-        area: currentArea,
+        text: searchQuery,
+        area: params.city ? getArea(params.city) : currentArea,
       })
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
