@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { Title, Button, Group, TextInput } from "@mantine/core";
 
 import {
   useTypedDispatch,
-  useTypedSelector,
+  // useTypedSelector,
 } from "../../app/redux/hooks/redux";
 
 import {
@@ -17,13 +18,17 @@ import SearchIcon from "../../app/assets/search-bar/search.svg";
 import styles from "./SearchBar.module.css";
 
 export const SearchBar = () => {
+  const [searchParams] = useSearchParams();
+
   const dispatch = useTypedDispatch();
 
-  const searchText = useTypedSelector(
-    (state) => state.vacanciesReducer.searchText
-  );
+  // const searchText = useTypedSelector(
+  //   (state) => state.vacanciesReducer.searchText
+  // );
 
-  const [searchInput, setSearchInput] = useState(searchText);
+  const searchKeywordParam = searchParams.get("keywords") || "";
+
+  const [searchInput, setSearchInput] = useState(searchKeywordParam);
 
   const handleClickOnSearch = () => {
     dispatch(inputSearchText(searchInput));
