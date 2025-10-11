@@ -12,7 +12,7 @@ interface fetchVacanciesStateResponce {
 
 interface getVacanciesProps {
   page: number;
-  text: string;
+  text: string | null;
   area: null | string;
 }
 
@@ -21,14 +21,14 @@ export const fetchVacancies = createAsyncThunk<
   getVacanciesProps
 >(
   "vacancies/fetchVacancies",
-  async function ({ page = 0, text = "", area = null }: getVacanciesProps) {
+  async function ({ page = 0, text = null, area = null }: getVacanciesProps) {
     const response = await ky.get(url, {
       searchParams: {
         industry: 7,
         professional_role: 96,
         page,
         per_page: 10,
-        text,
+        ...(text && { text }),
         ...(area && { area }),
       },
     });

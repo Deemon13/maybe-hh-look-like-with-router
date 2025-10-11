@@ -42,7 +42,8 @@ const initialState: VacanciesState = {
   vacancies: [],
   status: null,
   currentPage: 1,
-  skill_set: ["TypeScript", "React", "Redux"],
+  // skill_set: ["TypeScript", "React", "Redux"],
+  skill_set: [],
   currentArea: null,
 
   searchText: "",

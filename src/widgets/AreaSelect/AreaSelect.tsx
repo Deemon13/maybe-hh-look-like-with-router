@@ -1,3 +1,4 @@
+// import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Select } from "@mantine/core";
 
@@ -47,6 +48,17 @@ export const AreaSelect = () => {
       return searchParams;
     });
   };
+
+  // useEffect(() => {
+  //   setSearchParams((searchParams) => {
+  //     if (!city) {
+  //       searchParams.delete("area");
+  //     } else {
+  //       searchParams.set("area", city);
+  //     }
+  //     return searchParams;
+  //   });
+  // }, [city, setSearchParams]);
 
   const mapPin = <img src={MapPin} alt="map-pin-icon" />;
 

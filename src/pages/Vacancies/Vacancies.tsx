@@ -9,7 +9,7 @@ import {
 import { fetchVacancies } from "../../app/redux/reducers/VacanciesThunk";
 
 import {
-  // addSkill,
+  addSkill,
   // inputSearchText,
   selectArea,
 } from "../../app/redux/reducers/vacanciesSlice";
@@ -19,7 +19,6 @@ import { VacanciesList, LoaderUI, NoResults } from "../../shared";
 import { SearchBar, SkillBox, AreaSelect, PaginationUI } from "../../widgets";
 
 import styles from "./Vacancies.module.css";
-// import { selectArea } from "../../app/redux/reducers/vacanciesSlice";
 
 export const Vacancies = () => {
   const [searchParams] = useSearchParams();
@@ -42,7 +41,7 @@ export const Vacancies = () => {
   const searchText = useTypedSelector(
     (state) => state.vacanciesReducer.searchText
   );
-  const skills = useTypedSelector((state) => state.vacanciesReducer.skill_set);
+  // const skills = useTypedSelector((state) => state.vacanciesReducer.skill_set);
 
   // const params: {
   //   skills?: string;
@@ -95,25 +94,31 @@ export const Vacancies = () => {
 
   // }, [cityParam, searchKeywordParam, dispatch]);
 
-  const searchSkills = skills.join(" AND ");
-  const searchQuery = searchText
-    ? `${searchText} AND ${searchSkills}`
-    : `${searchSkills}`;
+  // const searchSkills = skills.join(" AND ");
+  // const searchQuery = searchText
+  //   ? `${searchText} AND ${searchSkills}`
+  //   : `${searchSkills}`;
 
   useEffect(() => {
-    // console.log("vacancies area", currentArea);
-
     const city = searchParams.get("area");
-    // console.log(city);
     const areaFromCity = city ? getArea(city) : null;
-    // console.log(areaFromCity);
+    const searchSkills = searchParams.get("skills") || "";
+    const skillSet = searchSkills?.split(" AND ") || [];
 
     dispatch(selectArea(city));
+    if (searchSkills) {
+      skillSet.forEach((skill) => dispatch(addSkill(skill)));
+    }
 
-    // const searchSkills = skills.join(" AND ");
-    // const searchQuery = searchText
-    //   ? `${searchText} AND ${searchSkills}`
-    //   : `${searchSkills}`;
+    const searchQuery = searchText
+      ? `${searchText} AND ${searchSkills}`
+      : `${searchSkills}`; // ''
+
+    // console.log("searchText", searchText);
+    // console.log("searchSkills", searchSkills);
+    // console.log("skillSet", skillSet);
+    // console.log("searchQuery", searchQuery);
+
     dispatch(
       fetchVacancies({
         page: currentPage,
@@ -121,9 +126,7 @@ export const Vacancies = () => {
         area: areaFromCity,
       })
     );
-
-    // setSearchParams(params);
-  }, [currentPage, dispatch, searchParams, searchQuery]);
+  }, [currentPage, dispatch, searchParams, searchText]);
 
   return (
     <>

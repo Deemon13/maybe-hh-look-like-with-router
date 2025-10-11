@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 
 import { Title, Group, ActionIcon, TextInput, Pill } from "@mantine/core";
@@ -18,6 +19,8 @@ import AddIcon from "../../app/assets/main/add-icon.svg";
 import styles from "./SkillBox.module.css";
 
 export const SkillBox = () => {
+  const [, setSearchParams] = useSearchParams();
+
   const dispatch = useTypedDispatch();
 
   const [skillInput, setSkillInput] = useState("");
@@ -31,6 +34,16 @@ export const SkillBox = () => {
   }, [dispatch, skillInput]);
 
   useEffect(() => {
+    setSearchParams((searchParams) => {
+      if (!skills.length) {
+        searchParams.delete("skills");
+      } else {
+        const skillSet = `${skills.join(" AND ")}`;
+        searchParams.set("skills", skillSet);
+      }
+      return searchParams;
+    });
+
     const onEnter = (evt: { code: string }) => {
       if (!skillInput) {
         return;
@@ -43,7 +56,7 @@ export const SkillBox = () => {
 
     document.addEventListener("keydown", onEnter);
     return () => document.removeEventListener("keydown", onEnter);
-  }, [addSkillPill, skillInput]);
+  }, [addSkillPill, setSearchParams, skillInput, skills]);
 
   const handleClickOnAddSkill = () => {
     if (!skillInput) {
