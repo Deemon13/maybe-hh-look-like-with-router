@@ -1,7 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 import { Select } from "@mantine/core";
 
-import { useTypedDispatch } from "../../app/redux/hooks/redux";
+import {
+  useTypedDispatch,
+  useTypedSelector,
+} from "../../app/redux/hooks/redux";
 
 import { selectArea } from "../../app/redux/reducers/vacanciesSlice";
 
@@ -9,15 +12,40 @@ import MapPin from "../../app/assets/main/map-pin.svg";
 
 import styles from "./AreaSelect.module.css";
 
+const getCity = (area: string | null) => {
+  switch (area) {
+    case "1":
+      return "Москва";
+    case "2":
+      return "Санкт-Петербург";
+    default:
+      return null;
+  }
+};
+
 export const AreaSelect = () => {
-  const [searchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const dispatch = useTypedDispatch();
 
-  const city = searchParams.get("city") || null;
+  const city = getCity(
+    useTypedSelector((state) => state.vacanciesReducer.currentArea)
+  );
+  // const city = searchParams.get("city") || null;
 
   const handleSelectArea = (evt: string | null) => {
+    // console.log("select area", evt);
+
     dispatch(selectArea(evt));
+    const newArea = evt;
+    setSearchParams((searchParams) => {
+      if (!newArea || evt === "Все города") {
+        searchParams.delete("area");
+      } else {
+        searchParams.set("area", newArea);
+      }
+      return searchParams;
+    });
   };
 
   const mapPin = <img src={MapPin} alt="map-pin-icon" />;
