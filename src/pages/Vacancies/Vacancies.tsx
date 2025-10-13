@@ -12,6 +12,7 @@ import {
   addSkill,
   // inputSearchText,
   selectArea,
+  setCurrentPage,
 } from "../../app/redux/reducers/vacanciesSlice";
 
 import { VacanciesList, LoaderUI, NoResults } from "../../shared";
@@ -31,9 +32,9 @@ export const Vacancies = () => {
 
   const status = useTypedSelector((state) => state.vacanciesReducer.status);
 
-  const currentPage = useTypedSelector(
-    (state) => state.vacanciesReducer.currentPage
-  );
+  // const currentPage = useTypedSelector(
+  //   (state) => state.vacanciesReducer.currentPage
+  // );
   // const currentArea = useTypedSelector(
   //   (state) => state.vacanciesReducer.currentArea
   // );
@@ -104,11 +105,13 @@ export const Vacancies = () => {
     const areaFromCity = city ? getArea(city) : null;
     const searchSkills = searchParams.get("skills") || "";
     const skillSet = searchSkills?.split(" AND ") || [];
+    const pageParam = searchParams.get("page");
 
     dispatch(selectArea(city));
     if (searchSkills) {
       skillSet.forEach((skill) => dispatch(addSkill(skill)));
     }
+    dispatch(setCurrentPage(Number(pageParam)));
 
     const searchQuery = searchText
       ? `${searchText} AND ${searchSkills}`
@@ -121,12 +124,12 @@ export const Vacancies = () => {
 
     dispatch(
       fetchVacancies({
-        page: currentPage,
+        page: Number(pageParam),
         text: searchQuery,
         area: areaFromCity,
       })
     );
-  }, [currentPage, dispatch, searchParams, searchText]);
+  }, [dispatch, searchParams, searchText]);
 
   return (
     <>

@@ -55,7 +55,11 @@ export const vacanciesSlice = createSlice({
   initialState,
   reducers: {
     setCurrentPage: (state, action) => {
-      state.currentPage = action.payload;
+      if (action.payload === 0) {
+        state.currentPage = 1;
+      } else {
+        state.currentPage = action.payload;
+      }
     },
     inputSearchText: (state, action) => {
       state.searchText = action.payload;

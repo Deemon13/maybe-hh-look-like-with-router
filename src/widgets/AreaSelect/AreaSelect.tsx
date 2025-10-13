@@ -44,9 +44,11 @@ export const AreaSelect = () => {
       } else {
         searchParams.set("area", newArea);
       }
+
+      searchParams.set("page", String(1));
       return searchParams;
     });
-
+    // const newCurrentPage = Number(searchParams.get("page"));
     dispatch(setCurrentPage(1));
   };
 

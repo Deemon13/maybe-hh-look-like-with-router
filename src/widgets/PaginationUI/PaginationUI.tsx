@@ -1,4 +1,4 @@
-// import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Group, Pagination, useMantineTheme } from "@mantine/core";
 
 import {
@@ -10,7 +10,7 @@ import { setCurrentPage } from "../../app/redux/reducers/vacanciesSlice";
 // import { useEffect, useState } from "react";
 
 export const PaginationUI = () => {
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const dispatch = useTypedDispatch();
 
@@ -25,8 +25,21 @@ export const PaginationUI = () => {
   const theme = useMantineTheme();
 
   const handleSetCurrentPage = (evt: number) => {
-    console.log(evt);
+    // console.log(evt);
     dispatch(setCurrentPage(evt));
+    const newCurrentPage = evt;
+
+    setSearchParams((searchParams) => {
+      // if (!newArea || evt === "Все города") {
+      //   searchParams.delete("area");
+      // } else {
+      //   searchParams.set("area", newArea);
+      // }
+
+      searchParams.set("page", String(newCurrentPage));
+      return searchParams;
+    });
+
     // setPage(evt);
   };
 
