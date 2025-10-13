@@ -70,8 +70,8 @@ export const SkillBox = () => {
       key={pill}
       withRemoveButton
       onRemove={() => {
-        dispatch(setCurrentPage(1));
         dispatch(removeSkill(pill));
+        dispatch(setCurrentPage(1));
       }}
     >
       {pill}

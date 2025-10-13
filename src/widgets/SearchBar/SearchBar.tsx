@@ -6,7 +6,7 @@ import { Title, Button, Group, TextInput } from "@mantine/core";
 import { useTypedDispatch } from "../../app/redux/hooks/redux";
 
 import {
-  setCurrentPage,
+  // setCurrentPage,
   inputSearchText,
 } from "../../app/redux/reducers/vacanciesSlice";
 
@@ -25,7 +25,7 @@ export const SearchBar = () => {
 
   const handleClickOnSearch = () => {
     dispatch(inputSearchText(searchInput));
-    dispatch(setCurrentPage(1));
+    // dispatch(setCurrentPage(1));
   };
 
   const searchIcon = <img src={SearchIcon} alt="search-icon" />;

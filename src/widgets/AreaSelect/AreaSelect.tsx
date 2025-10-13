@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Select } from "@mantine/core";
 
@@ -7,7 +6,10 @@ import {
   useTypedSelector,
 } from "../../app/redux/hooks/redux";
 
-import { selectArea } from "../../app/redux/reducers/vacanciesSlice";
+import {
+  selectArea,
+  setCurrentPage,
+} from "../../app/redux/reducers/vacanciesSlice";
 
 import MapPin from "../../app/assets/main/map-pin.svg";
 
@@ -32,11 +34,8 @@ export const AreaSelect = () => {
   const city = getCity(
     useTypedSelector((state) => state.vacanciesReducer.currentArea)
   );
-  // const city = searchParams.get("city") || null;
 
   const handleSelectArea = (evt: string | null) => {
-    // console.log("select area", evt);
-
     dispatch(selectArea(evt));
     const newArea = evt;
     setSearchParams((searchParams) => {
@@ -47,18 +46,9 @@ export const AreaSelect = () => {
       }
       return searchParams;
     });
-  };
 
-  // useEffect(() => {
-  //   setSearchParams((searchParams) => {
-  //     if (!city) {
-  //       searchParams.delete("area");
-  //     } else {
-  //       searchParams.set("area", city);
-  //     }
-  //     return searchParams;
-  //   });
-  // }, [city, setSearchParams]);
+    dispatch(setCurrentPage(1));
+  };
 
   const mapPin = <img src={MapPin} alt="map-pin-icon" />;
 

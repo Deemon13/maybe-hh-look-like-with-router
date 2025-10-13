@@ -88,7 +88,7 @@ export const vacanciesSlice = createSlice({
           state.currentArea = null;
           break;
       }
-      state.currentPage = 1;
+      // state.currentPage = 1;
     },
   },
   extraReducers: (builder) => {
