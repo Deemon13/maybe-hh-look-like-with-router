@@ -4,8 +4,6 @@ import { Vacancies, VacancyPage, NotFound } from "../../pages";
 
 import { Layout } from "../../shared";
 
-// import styles from "./App.module.css";
-
 export const App = () => {
   return (
     <>

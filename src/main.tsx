@@ -6,7 +6,6 @@ import {
   MantineProvider,
   type MantineColorsTuple,
 } from "@mantine/core";
-// import { BrowserRouter } from "react-router-dom";
 import { HashRouter } from "react-router";
 
 import { setupStore } from "./shared/store/store";

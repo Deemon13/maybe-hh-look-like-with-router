@@ -2,7 +2,6 @@
 
 import "@testing-library/jest-dom/vitest";
 import "@testing-library/jest-dom";
-// import "@testing-library/jest-dom/jest-globals";
 
 import { vi } from "vitest";
 
