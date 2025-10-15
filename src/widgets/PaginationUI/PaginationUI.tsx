@@ -7,7 +7,6 @@ import {
 } from "../../app/redux/hooks/redux";
 
 import { setCurrentPage } from "../../app/redux/reducers/vacanciesSlice";
-// import { useEffect, useState } from "react";
 
 export const PaginationUI = () => {
   const [, setSearchParams] = useSearchParams();
@@ -18,35 +17,19 @@ export const PaginationUI = () => {
     (state) => state.vacanciesReducer.currentPage
   );
 
-  // const [page, setPage] = useState(currentPage);
-
   const pages = useTypedSelector((state) => state.vacanciesReducer.pages);
 
   const theme = useMantineTheme();
 
   const handleSetCurrentPage = (evt: number) => {
-    // console.log(evt);
     dispatch(setCurrentPage(evt));
     const newCurrentPage = evt;
 
     setSearchParams((searchParams) => {
-      // if (!newArea || evt === "Все города") {
-      //   searchParams.delete("area");
-      // } else {
-      //   searchParams.set("area", newArea);
-      // }
-
       searchParams.set("page", String(newCurrentPage));
       return searchParams;
     });
-
-    // setPage(evt);
   };
-
-  // useEffect(() => {
-  // setSearchParams((searchParams) => searchParams.set("page", page));
-  //   searchParams.set("page", String(page));
-  // }, [page, searchParams, setSearchParams]);
 
   return (
     <Pagination.Root

@@ -79,9 +79,6 @@ export const vacanciesSlice = createSlice({
     },
     selectArea: (state, action) => {
       switch (action.payload) {
-        // case "Все города":
-        //   state.currentArea = null;
-        //   break;
         case "Москва":
           state.currentArea = "1";
           break;
@@ -92,7 +89,6 @@ export const vacanciesSlice = createSlice({
           state.currentArea = null;
           break;
       }
-      // state.currentPage = 1;
     },
   },
   extraReducers: (builder) => {

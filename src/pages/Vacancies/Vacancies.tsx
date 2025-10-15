@@ -11,7 +11,6 @@ import { fetchVacancies } from "../../app/redux/reducers/VacanciesThunk";
 import {
   addSkill,
   inputSearchText,
-  // inputSearchText,
   selectArea,
   setCurrentPage,
 } from "../../app/redux/reducers/vacanciesSlice";
@@ -33,30 +32,6 @@ export const Vacancies = () => {
 
   const status = useTypedSelector((state) => state.vacanciesReducer.status);
 
-  // const currentPage = useTypedSelector(
-  //   (state) => state.vacanciesReducer.currentPage
-  // );
-  // const currentArea = useTypedSelector(
-  //   (state) => state.vacanciesReducer.currentArea
-  // );
-
-  // const searchText = useTypedSelector(
-  //   (state) => state.vacanciesReducer.searchText
-  // );
-  // const skills = useTypedSelector((state) => state.vacanciesReducer.skill_set);
-
-  // const params: {
-  //   skills?: string;
-  //   city?: string;
-  //   keywords?: string;
-  // } = {};
-
-  // useEffect(() => {
-  // const cityParam = searchParams.get("city") || "Все города";
-  // const skillsParam = searchParams.get("skills")?.split(" AND ") || [];
-  // const searchKeywordParam = searchParams.get("keywords") || "";
-  // }, [searchParams]);
-
   function getArea(cityUrl: string | null) {
     switch (cityUrl) {
       case "Москва":
@@ -67,39 +42,6 @@ export const Vacancies = () => {
         return null;
     }
   }
-
-  // if (skills.length > 0) {
-  //   params.skills = skills.join(" AND ");
-  // } else {
-  //   delete params.skills;
-  // }
-
-  // switch (currentArea) {
-  //   case "1":
-  //     params.city = "Москва";
-  //     break;
-  //   case "2":
-  //     params.city = "Санкт-Петербург";
-  //     break;
-  //   default:
-  //     break;
-  // }
-
-  // if (searchText) {
-  //   params.keywords = searchText;
-  // }
-
-  // useEffect(() => {
-  //   dispatch(selectArea(cityParam));
-  //   skillsParam.forEach((skill) => dispatch(addSkill(skill)));
-  //   dispatch(inputSearchText(searchKeywordParam));
-
-  // }, [cityParam, searchKeywordParam, dispatch]);
-
-  // const searchSkills = skills.join(" AND ");
-  // const searchQuery = searchText
-  //   ? `${searchText} AND ${searchSkills}`
-  //   : `${searchSkills}`;
 
   useEffect(() => {
     const city = searchParams.get("area");
@@ -119,11 +61,6 @@ export const Vacancies = () => {
     const searchQuery = searchTextKeyword
       ? `${searchTextKeyword} AND ${searchSkills}`
       : `${searchSkills}`; // ''
-
-    // console.log("searchText", searchText);
-    // console.log("searchSkills", searchSkills);
-    // console.log("skillSet", skillSet);
-    // console.log("searchQuery", searchQuery);
 
     dispatch(
       fetchVacancies({

@@ -1,5 +1,5 @@
-import { useSearchParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { Title, Group, ActionIcon, TextInput, Pill } from "@mantine/core";
 
@@ -8,18 +8,14 @@ import {
   useTypedSelector,
 } from "../../app/redux/hooks/redux";
 
-import {
-  setCurrentPage,
-  addSkill,
-  removeSkill,
-} from "../../app/redux/reducers/vacanciesSlice";
+import { addSkill, removeSkill } from "../../app/redux/reducers/vacanciesSlice";
 
 import AddIcon from "../../app/assets/main/add-icon.svg";
 
 import styles from "./SkillBox.module.css";
 
 export const SkillBox = () => {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useTypedDispatch();
 
@@ -30,12 +26,8 @@ export const SkillBox = () => {
   const addSkillPill = useCallback(() => {
     dispatch(addSkill(skillInput.trim()));
     setSkillInput("");
-    // dispatch(setCurrentPage(1));
-    // setSearchParams((searchParams) => {
-    //   searchParams.set("page", String(1));
-    //   return searchParams;
-    // });
-  }, [dispatch, skillInput]);
+    searchParams.set("page", String(1));
+  }, [dispatch, searchParams, skillInput]);
 
   useEffect(() => {
     setSearchParams((searchParams) => {
@@ -45,7 +37,6 @@ export const SkillBox = () => {
         const skillSet = `${skills.join(" AND ")}`;
         searchParams.set("skills", skillSet);
       }
-      // searchParams.set("page", String(1));
       return searchParams;
     });
 
@@ -70,14 +61,16 @@ export const SkillBox = () => {
     addSkillPill();
   };
 
+  const handleClickOnRemoveSkill = (item: string) => {
+    dispatch(removeSkill(item));
+    searchParams.set("page", String(1));
+  };
+
   const skillPills = skills.map((pill) => (
     <Pill
       key={pill}
       withRemoveButton
-      onRemove={() => {
-        dispatch(removeSkill(pill));
-        dispatch(setCurrentPage(1));
-      }}
+      onRemove={() => handleClickOnRemoveSkill(pill)}
     >
       {pill}
     </Pill>
