@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { Title, Button, Group, TextInput } from "@mantine/core";
 
-import { useTypedDispatch } from "../../app/redux/hooks/redux";
+import {
+  useTypedDispatch,
+  useTypedSelector,
+} from "../../app/redux/hooks/redux";
 
 import {
-  // setCurrentPage,
+  setCurrentPage,
   inputSearchText,
 } from "../../app/redux/reducers/vacanciesSlice";
 
@@ -15,17 +18,33 @@ import SearchIcon from "../../app/assets/search-bar/search.svg";
 import styles from "./SearchBar.module.css";
 
 export const SearchBar = () => {
-  const [searchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const dispatch = useTypedDispatch();
 
-  const searchKeywordParam = searchParams.get("keywords") || "";
+  const inputSearchValue = useTypedSelector(
+    (state) => state.vacanciesReducer.searchText
+  );
 
-  const [searchInput, setSearchInput] = useState(searchKeywordParam);
+  const [searchInput, setSearchInput] = useState(inputSearchValue);
+
+  useEffect(() => {
+    setSearchInput(inputSearchValue);
+  }, [inputSearchValue]);
 
   const handleClickOnSearch = () => {
     dispatch(inputSearchText(searchInput));
-    // dispatch(setCurrentPage(1));
+    setSearchParams((searchParams) => {
+      if (!searchInput) {
+        searchParams.delete("keyword");
+      } else {
+        searchParams.set("keyword", searchInput);
+      }
+
+      searchParams.set("page", String(1));
+      return searchParams;
+    });
+    dispatch(setCurrentPage(1));
   };
 
   const searchIcon = <img src={SearchIcon} alt="search-icon" />;

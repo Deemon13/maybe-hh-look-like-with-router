@@ -10,6 +10,7 @@ import { fetchVacancies } from "../../app/redux/reducers/VacanciesThunk";
 
 import {
   addSkill,
+  inputSearchText,
   // inputSearchText,
   selectArea,
   setCurrentPage,
@@ -39,9 +40,9 @@ export const Vacancies = () => {
   //   (state) => state.vacanciesReducer.currentArea
   // );
 
-  const searchText = useTypedSelector(
-    (state) => state.vacanciesReducer.searchText
-  );
+  // const searchText = useTypedSelector(
+  //   (state) => state.vacanciesReducer.searchText
+  // );
   // const skills = useTypedSelector((state) => state.vacanciesReducer.skill_set);
 
   // const params: {
@@ -106,15 +107,17 @@ export const Vacancies = () => {
     const searchSkills = searchParams.get("skills") || "";
     const skillSet = searchSkills?.split(" AND ") || [];
     const pageParam = searchParams.get("page");
+    const searchTextKeyword = searchParams.get("keyword") || "";
 
     dispatch(selectArea(city));
     if (searchSkills) {
       skillSet.forEach((skill) => dispatch(addSkill(skill)));
     }
     dispatch(setCurrentPage(Number(pageParam)));
+    dispatch(inputSearchText(searchTextKeyword));
 
-    const searchQuery = searchText
-      ? `${searchText} AND ${searchSkills}`
+    const searchQuery = searchTextKeyword
+      ? `${searchTextKeyword} AND ${searchSkills}`
       : `${searchSkills}`; // ''
 
     // console.log("searchText", searchText);
@@ -129,7 +132,7 @@ export const Vacancies = () => {
         area: areaFromCity,
       })
     );
-  }, [dispatch, searchParams, searchText]);
+  }, [dispatch, searchParams]);
 
   return (
     <>

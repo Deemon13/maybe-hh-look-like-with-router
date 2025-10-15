@@ -30,7 +30,11 @@ export const SkillBox = () => {
   const addSkillPill = useCallback(() => {
     dispatch(addSkill(skillInput.trim()));
     setSkillInput("");
-    dispatch(setCurrentPage(1));
+    // dispatch(setCurrentPage(1));
+    // setSearchParams((searchParams) => {
+    //   searchParams.set("page", String(1));
+    //   return searchParams;
+    // });
   }, [dispatch, skillInput]);
 
   useEffect(() => {
@@ -41,6 +45,7 @@ export const SkillBox = () => {
         const skillSet = `${skills.join(" AND ")}`;
         searchParams.set("skills", skillSet);
       }
+      // searchParams.set("page", String(1));
       return searchParams;
     });
 
