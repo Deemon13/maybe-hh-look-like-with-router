@@ -8,7 +8,7 @@ export const NavHeader = () => {
       <ul className={styles["nav-menu__list"]}>
         <li className={styles["nav-menu__item"]}>
           <Link
-            to="/maybe-hh-look-like-with-router/vacancies"
+            to="/vacancies"
             className={`${styles["nav-menu__link"]} ${styles["nav-menu__link--active"]}`}
           >
             Вакансии FE

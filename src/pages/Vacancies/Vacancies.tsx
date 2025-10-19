@@ -56,7 +56,7 @@ export const Vacancies = () => {
 
     const searchQuery = searchTextKeyword
       ? `${searchTextKeyword} AND ${searchSkills}`
-      : `${searchSkills}`; // ''
+      : `${searchSkills}`;
 
     dispatch(
       fetchVacancies({

@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
+import { HashRouter } from "react-router";
 import {
   createTheme,
   MantineProvider,
   type MantineColorsTuple,
 } from "@mantine/core";
-import { BrowserRouter } from "react-router";
 
 import { setupStore } from "./shared/store/store";
 import { App } from "./app";
@@ -34,12 +34,12 @@ const theme = createTheme({
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={setupStore}>
         <MantineProvider theme={theme}>
           <App />
         </MantineProvider>
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>
 );

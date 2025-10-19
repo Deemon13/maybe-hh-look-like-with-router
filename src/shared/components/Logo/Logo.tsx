@@ -6,10 +6,7 @@ import styles from "./Logo.module.css";
 
 export const Logo = () => {
   return (
-    <Link
-      to="/maybe-hh-look-like-with-router/vacancies"
-      className={styles["logo__link"]}
-    >
+    <Link to="/vacancies" className={styles["logo__link"]}>
       <img
         className={styles["logo__icon"]}
         src={LogoIcon}

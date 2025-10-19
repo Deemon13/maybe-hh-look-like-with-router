@@ -7,7 +7,7 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/maybe-hh-look-like-with-router" element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Navigate to="/vacancies" replace />} />
           <Route path="vacancies" element={<Vacancies />} />
           <Route path="vacancies/:id" element={<VacancyPage />} />
