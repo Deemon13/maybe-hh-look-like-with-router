@@ -6,7 +6,7 @@ import {
   MantineProvider,
   type MantineColorsTuple,
 } from "@mantine/core";
-import { HashRouter } from "react-router";
+import { BrowserRouter } from "react-router";
 
 import { setupStore } from "./shared/store/store";
 import { App } from "./app";
@@ -34,12 +34,12 @@ const theme = createTheme({
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <HashRouter>
+    <BrowserRouter>
       <Provider store={setupStore}>
         <MantineProvider theme={theme}>
           <App />
         </MantineProvider>
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   </StrictMode>
 );

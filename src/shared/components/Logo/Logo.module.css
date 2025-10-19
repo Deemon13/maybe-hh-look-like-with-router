@@ -1,7 +1,9 @@
-.logo__container {
+.logo__link {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  color: #0f0f10;
 }
 
 .logo__container:hover {
