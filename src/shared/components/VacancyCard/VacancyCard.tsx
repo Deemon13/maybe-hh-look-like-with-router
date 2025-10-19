@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Badge } from "@mantine/core";
 
 import { useTypedSelector } from "../../../app/redux/hooks/redux";
-
 import type { VacanciesType } from "../../../app/redux/reducers/vacanciesSlice";
 
 import styles from "./VacancyCard.module.css";
@@ -105,14 +104,19 @@ const getWorkFormat = (data: [{ id: string | null }] | [] | null) => {
   });
 };
 
-const getArea = (data: string | null, currentArea: string | null) => {
+const getArea = (
+  data: string | null,
+  currentArea: string | null,
+  singlePage: boolean
+) => {
   if (!data) {
     return null;
   }
 
   if (
-    (data === "Москва" && currentArea === "1") ||
-    (data === "Санкт-Петербург" && currentArea === "2")
+    ((data === "Москва" && currentArea === "1") ||
+      (data === "Санкт-Петербург" && currentArea === "2")) &&
+    !singlePage
   ) {
     return null;
   }
@@ -152,7 +156,7 @@ export const VacancyCard = ({ item, isSingle = false }: VacancyCardProps) => {
         </div>
       )}
 
-      {item.area && getArea(item.area.name, currentArea)}
+      {item.area && getArea(item.area.name, currentArea, isSingle)}
 
       <div className={styles["vacancy-card__actions"]}>
         {!isSingle && (
@@ -160,6 +164,7 @@ export const VacancyCard = ({ item, isSingle = false }: VacancyCardProps) => {
             to={item.id}
             type="button"
             className={styles["vacancy-card__action--showme"]}
+            state={item}
           >
             Смотреть вакансию
           </Link>

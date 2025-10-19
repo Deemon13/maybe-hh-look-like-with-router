@@ -1,15 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
 import { Title, Group, ActionIcon, TextInput, Pill } from "@mantine/core";
 
 import {
   useTypedDispatch,
   useTypedSelector,
 } from "../../app/redux/hooks/redux";
-
 import { addSkill, removeSkill } from "../../app/redux/reducers/vacanciesSlice";
-
 import AddIcon from "../../app/assets/main/add-icon.svg";
 
 import styles from "./SkillBox.module.css";

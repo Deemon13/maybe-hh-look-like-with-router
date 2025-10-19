@@ -1,7 +1,6 @@
 import { Navigate, Routes, Route } from "react-router-dom";
 
 import { Vacancies, VacancyPage, NotFound } from "../../pages";
-
 import { Layout } from "../../shared";
 
 export const App = () => {

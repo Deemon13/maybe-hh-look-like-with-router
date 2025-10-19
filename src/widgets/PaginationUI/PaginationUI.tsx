@@ -5,7 +5,6 @@ import {
   useTypedDispatch,
   useTypedSelector,
 } from "../../app/redux/hooks/redux";
-
 import { setCurrentPage } from "../../app/redux/reducers/vacanciesSlice";
 
 export const PaginationUI = () => {

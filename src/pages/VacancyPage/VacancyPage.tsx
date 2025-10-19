@@ -1,9 +1,6 @@
-import { useParams } from "react-router-dom";
-
-import { useTypedSelector } from "../../app/redux/hooks/redux";
+import { useLocation } from "react-router-dom";
 
 import { VacancyCard } from "../../shared";
-
 import NoLogo from "../../app/assets/no-logo-company/no-logo.jpg";
 
 import styles from "./VacancyPage.module.css";
@@ -28,15 +25,11 @@ const getStrongText = (str: string | null | undefined) => {
 };
 
 export const VacancyPage = () => {
-  const { id } = useParams();
-
-  const vacancies = useTypedSelector(
-    (state) => state.vacanciesReducer.vacancies
-  );
+  const location = useLocation();
 
   const errorVacancy = "Отсутствуют данные";
 
-  const vacancy = vacancies.find((item) => item.id === id);
+  const vacancy = location.state;
 
   const markupReq = (
     <div

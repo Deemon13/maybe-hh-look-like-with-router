@@ -9,8 +9,10 @@ import {
 import { HashRouter } from "react-router";
 
 import { setupStore } from "./shared/store/store";
-
 import { App } from "./app";
+
+import "@mantine/core/styles.css";
+import "./index.css";
 
 const myColor: MantineColorsTuple = [
   "#edf2ff",
@@ -29,9 +31,6 @@ const theme = createTheme({
   colors: { myColor },
   primaryColor: "indigo",
 });
-
-import "@mantine/core/styles.css";
-import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

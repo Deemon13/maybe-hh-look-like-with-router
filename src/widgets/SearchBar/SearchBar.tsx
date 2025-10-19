@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
 import { Title, Button, Group, TextInput } from "@mantine/core";
 
 import {
   useTypedDispatch,
   useTypedSelector,
 } from "../../app/redux/hooks/redux";
-
 import {
   setCurrentPage,
   inputSearchText,
 } from "../../app/redux/reducers/vacanciesSlice";
-
 import SearchIcon from "../../app/assets/search-bar/search.svg";
 
 import styles from "./SearchBar.module.css";

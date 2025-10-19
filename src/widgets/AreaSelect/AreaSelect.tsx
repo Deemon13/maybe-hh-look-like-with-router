@@ -5,12 +5,10 @@ import {
   useTypedDispatch,
   useTypedSelector,
 } from "../../app/redux/hooks/redux";
-
 import {
   selectArea,
   setCurrentPage,
 } from "../../app/redux/reducers/vacanciesSlice";
-
 import MapPin from "../../app/assets/main/map-pin.svg";
 
 import styles from "./AreaSelect.module.css";

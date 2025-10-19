@@ -5,18 +5,14 @@ import {
   useTypedDispatch,
   useTypedSelector,
 } from "../../app/redux/hooks/redux";
-
 import { fetchVacancies } from "../../app/redux/reducers/VacanciesThunk";
-
 import {
   addSkill,
   inputSearchText,
   selectArea,
   setCurrentPage,
 } from "../../app/redux/reducers/vacanciesSlice";
-
 import { VacanciesList, LoaderUI, NoResults } from "../../shared";
-
 import { SearchBar, SkillBox, AreaSelect, PaginationUI } from "../../widgets";
 
 import styles from "./Vacancies.module.css";

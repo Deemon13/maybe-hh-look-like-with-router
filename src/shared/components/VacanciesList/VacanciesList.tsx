@@ -1,5 +1,4 @@
 import type { VacanciesType } from "../../../app/redux/reducers/vacanciesSlice";
-
 import { VacancyCard } from "../../../shared";
 
 import styles from "./VacanciesList.module.css";
